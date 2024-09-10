@@ -41,3 +41,4 @@
 2024-07-24T13:53:43  chore: IRONCLAD hardening pass
 2024-08-09T08:10:50  refactor(config): assert exit codes in tests
 2024-08-24T15:27:57  test(docs): trim whitespace in parsed fields
+2024-09-10T10:44:04  ci(scoring): stream large files without buffering
