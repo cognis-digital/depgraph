@@ -42,3 +42,4 @@
 2024-08-09T08:10:50  refactor(config): assert exit codes in tests
 2024-08-24T15:27:57  test(docs): trim whitespace in parsed fields
 2024-09-10T10:44:04  ci(scoring): stream large files without buffering
+2024-09-25T17:01:11  feat(rules): add color + severity icons
