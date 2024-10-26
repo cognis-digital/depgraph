@@ -44,3 +44,4 @@
 2024-09-10T10:44:04  ci(scoring): stream large files without buffering
 2024-09-25T17:01:11  feat(rules): add color + severity icons
 2024-10-10T12:18:18  feat: PROMETHEUS unbound
+2024-10-26T19:35:25  ci(fixtures): guard against ReDoS in patterns
