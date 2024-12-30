@@ -47,3 +47,4 @@
 2024-10-26T19:35:25  ci(fixtures): guard against ReDoS in patterns
 2024-11-29T14:52:32  feat(parser): add pagination to large reports
 2024-12-15T09:09:39  chore: feed the FOUNDRY
+2024-12-30T16:26:46  refactor(mcp): add --fail-on threshold handling
