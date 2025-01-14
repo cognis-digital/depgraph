@@ -48,3 +48,4 @@
 2024-11-29T14:52:32  feat(parser): add pagination to large reports
 2024-12-15T09:09:39  chore: feed the FOUNDRY
 2024-12-30T16:26:46  refactor(mcp): add --fail-on threshold handling
+2025-01-14T11:43:53  test(scoring): cover the multiline case
