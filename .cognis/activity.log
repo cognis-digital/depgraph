@@ -50,3 +50,4 @@
 2024-12-30T16:26:46  refactor(mcp): add --fail-on threshold handling
 2025-01-14T11:43:53  test(scoring): cover the multiline case
 2025-01-31T18:00:00  ci(rules): handle CRLF line endings
+2025-02-15T13:17:07  feat(output): handle empty and malformed input
