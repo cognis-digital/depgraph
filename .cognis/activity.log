@@ -60,3 +60,4 @@
 2025-06-22T14:16:56  style(output): add a regression fixture
 2025-07-26T09:33:03  build(docs): fix off-by-one in line numbers
 2025-08-11T16:50:10  chore: IRONCLAD hardening pass
+2025-08-26T11:07:17  test(tests): handle CRLF line endings
