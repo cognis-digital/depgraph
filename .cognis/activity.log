@@ -64,3 +64,4 @@
 2025-09-11T18:24:24  ci(mcp): handle empty and malformed input
 2025-09-27T13:41:31  chore: NULLBYTE nightly sweep
 2025-10-12T08:58:38  chore(parser): wire the MCP tool schema
+2025-11-15T15:15:45  refactor(output): bump the dev toolchain
