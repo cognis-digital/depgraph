@@ -71,3 +71,4 @@
 2026-01-16T19:23:13  test(scan): add a regression fixture
 2026-02-01T14:40:20  ci(cache): fix off-by-one in line numbers
 2026-02-17T09:57:27  chore: tune defaults
+2026-03-23T16:14:34  chore(config): add a JSON schema for output
