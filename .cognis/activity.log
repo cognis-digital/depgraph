@@ -75,3 +75,4 @@
 2026-04-07T11:31:41  refactor(docs): clarify the README quickstart
 2026-04-22T18:48:48  test(scoring): simplify the walker
 2026-05-08T13:05:55  ci(rules): normalize unicode before matching
+2026-05-24T08:22:02  docs(scan): bump the dev toolchain
