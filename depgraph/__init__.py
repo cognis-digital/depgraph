@@ -1,11 +1,49 @@
-"""depgraph — part of the Cognis Neural Suite."""
-try:  # re-export the tool's public API + identity from core
-    from depgraph.core import *  # noqa: F401,F403
-except Exception:  # pragma: no cover
-    pass
-try:
-    from depgraph.core import TOOL_NAME, TOOL_VERSION
-except Exception:  # pragma: no cover
-    TOOL_NAME = "depgraph"
-    TOOL_VERSION = "0.1.0"
-__version__ = TOOL_VERSION
+"""DEPGRAPH — offline dependency-risk scorer + OSV-style vuln matcher.
+
+Audits dependency manifests (pip requirements, package.json, Pipfile) and
+assigns each dependency a letter-graded risk score from maintainer/age/
+typosquat heuristics (scorecard-style) plus matches against a bundled
+OSV-style advisory database (osv.dev-style version-range matching).
+
+Local, deterministic, zero-install, no network.
+"""
+
+from __future__ import annotations
+
+from .core import (
+    TOOL_NAME,
+    TOOL_VERSION,
+    AuditResult,
+    Dependency,
+    Finding,
+    audit_dependency,
+    audit_file,
+    audit_text,
+    levenshtein,
+    list_advisories,
+    match_advisories,
+    parse_manifest,
+    parse_version,
+    score_to_grade,
+    typosquat_match,
+    version_compare,
+)
+
+__all__ = [
+    "TOOL_NAME",
+    "TOOL_VERSION",
+    "AuditResult",
+    "Dependency",
+    "Finding",
+    "audit_dependency",
+    "audit_file",
+    "audit_text",
+    "levenshtein",
+    "list_advisories",
+    "match_advisories",
+    "parse_manifest",
+    "parse_version",
+    "score_to_grade",
+    "typosquat_match",
+    "version_compare",
+]

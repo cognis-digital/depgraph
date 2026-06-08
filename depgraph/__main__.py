@@ -1,4 +1,7 @@
-"""Enable `python -m depgraph`."""
+"""Enable ``python -m depgraph``."""
+
+from __future__ import annotations
+
 from .cli import main
 
 if __name__ == "__main__":
