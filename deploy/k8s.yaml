@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: depgraph, labels: { app: depgraph } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: depgraph } }
+  template:
+    metadata: { labels: { app: depgraph } }
+    spec:
+      containers:
+        - name: depgraph
+          image: ghcr.io/cognis-digital/depgraph:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: depgraph }
+spec:
+  selector: { app: depgraph }
+  ports: [{ port: 80, targetPort: 8000 }]
