@@ -1,0 +1,8 @@
+# Demo manifest for DEPGRAPH — intentionally risky
+requests==2.28.0
+urllib3==1.26.5
+pyyaml==5.3.1
+reqests==2.31.0   # typosquat of 'requests'
+flask>=2.0
+numpy==1.26.4
+colorama==0.4.6
