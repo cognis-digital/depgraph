@@ -1,0 +1,14 @@
+[
+  {
+    "name": "requests",
+    "open_cves": "2",
+    "scorecard": "8.1",
+    "typosquat_distance": "0"
+  },
+  {
+    "name": "reqests",
+    "open_cves": "0",
+    "scorecard": "3.2",
+    "typosquat_distance": "1"
+  }
+]

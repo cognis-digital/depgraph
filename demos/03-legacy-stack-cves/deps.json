@@ -1,0 +1,17 @@
+[
+  {
+    "name": "django",
+    "open_cves": "5",
+    "scorecard": "7.5"
+  },
+  {
+    "name": "celery",
+    "open_cves": "3",
+    "scorecard": "6.2"
+  },
+  {
+    "name": "old-lib-unmaintained",
+    "open_cves": "0",
+    "scorecard": "1.8"
+  }
+]

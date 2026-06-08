@@ -1,0 +1,14 @@
+[
+  {
+    "name": "fastapi",
+    "open_cves": "0",
+    "scorecard": "9.2",
+    "typosquat_distance": "0"
+  },
+  {
+    "name": "pydantic",
+    "open_cves": "0",
+    "scorecard": "8.8",
+    "typosquat_distance": "0"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "requests",
+    "open_cves": "2",
+    "scorecard": "8.1",
+    "typosquat_distance": "0"
+  },
+  {
+    "name": "reqests",
+    "open_cves": "0",
+    "scorecard": "3.2",
+    "typosquat_distance": "1"
+  },
+  {
+    "name": "urlib3",
+    "open_cves": "0",
+    "scorecard": "4.0",
+    "typosquat_distance": "1"
+  },
+  {
+    "name": "pyhton-dateutil",
+    "open_cves": "0",
+    "scorecard": "2.1",
+    "typosquat_distance": "1"
+  }
+]
