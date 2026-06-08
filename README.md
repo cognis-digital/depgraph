@@ -36,7 +36,10 @@ Dependency risk visualizer — Scorecard + OSV + typosquat + maintainer signals 
 <a name="features"></a>
 ## Features
 
-- ✅ Scan
+- ✅ Parse Manifest
+- ✅ Score Dependency
+- ✅ Analyze Dependencies
+- ✅ Analyze Manifest
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
