@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-depgraph
+pip install "git+https://github.com/cognis-digital/depgraph.git"
 depgraph scan .            # → prioritized findings in seconds
 ```
 
@@ -49,7 +49,7 @@ Dependency risk visualizer — Scorecard + OSV + typosquat + maintainer signals 
 ## Quick start
 
 ```bash
-pip install cognis-depgraph
+pip install "git+https://github.com/cognis-digital/depgraph.git"
 depgraph --version
 depgraph scan .                       # scan current project
 depgraph scan . --format json         # machine-readable
