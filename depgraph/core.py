@@ -29,7 +29,6 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass, field
-from typing import Iterable
 
 # ---------------------------------------------------------------------------
 # Bundled data: popular package names (for typosquat heuristics)
