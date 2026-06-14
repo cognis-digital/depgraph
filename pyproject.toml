@@ -36,3 +36,6 @@ depgraph = "depgraph.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["depgraph"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
