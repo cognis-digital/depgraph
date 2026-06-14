@@ -341,7 +341,16 @@ class Dependency:
         order = ["", "LOW", "MEDIUM", "HIGH", "CRITICAL"]
         worst = ""
         for f in self.findings:
-            if order.index(f.severity) > order.index(worst):
+            # Guard against unexpected severity values not in the order list.
+            try:
+                f_idx = order.index(f.severity)
+            except ValueError:
+                f_idx = 0
+            try:
+                w_idx = order.index(worst)
+            except ValueError:
+                w_idx = 0
+            if f_idx > w_idx:
                 worst = f.severity
         return worst or "NONE"
 
@@ -454,16 +463,20 @@ def _parse_pipfile(text: str) -> list[Dependency]:
         if "=" not in line or line.startswith("#"):
             continue
         name, _, rhs = line.partition("=")
-        name = name.strip().strip('"')
+        name = name.strip().strip('"').strip("'")
+        if not name:
+            continue
         rhs = rhs.strip().strip('"').strip("'")
         version = None
-        m = re.search(r"(\d[\w.]*)", rhs)
-        if rhs.startswith("==") or (m and rhs.lstrip("=").startswith(m.group(1))):
-            version = m.group(1) if m else None
-        if name:
-            deps.append(
-                Dependency(name=name, version=version, ecosystem="pypi", scope=scope)
-            )
+        try:
+            m = re.search(r"(\d[\w.]*)", rhs)
+            if rhs.startswith("==") or (m and rhs.lstrip("=").startswith(m.group(1))):
+                version = m.group(1) if m else None
+        except (TypeError, AttributeError):
+            version = None
+        deps.append(
+            Dependency(name=name, version=version, ecosystem="pypi", scope=scope)
+        )
     return deps
 
 
@@ -480,15 +493,22 @@ def _clean_npm_version(spec: str) -> str | None:
 
 def _parse_package_json(text: str) -> list[Dependency]:
     deps: list[Dependency] = []
+    if not text or not text.strip():
+        return deps
     try:
         data = json.loads(text)
-    except json.JSONDecodeError:
-        return deps
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"package.json is not valid JSON: {exc}") from exc
+    if not isinstance(data, dict):
+        raise ValueError("package.json must be a JSON object at the top level")
     for key, scope in (("dependencies", "runtime"), ("devDependencies", "dev")):
         block = data.get(key) or {}
         if not isinstance(block, dict):
             continue
         for name, spec in block.items():
+            name = str(name).strip()
+            if not name:
+                continue
             deps.append(
                 Dependency(
                     name=name,
@@ -501,7 +521,14 @@ def _parse_package_json(text: str) -> list[Dependency]:
 
 
 def parse_manifest(text: str, filename: str = "") -> list[Dependency]:
-    """Dispatch to the right parser based on filename / content sniffing."""
+    """Dispatch to the right parser based on filename / content sniffing.
+
+    Raises ``ValueError`` for manifests that are structurally invalid (e.g.
+    malformed JSON in a package.json).  Returns an empty list for empty or
+    comment-only manifests — that is not an error.
+    """
+    if text is None:
+        text = ""
     fn = (filename or "").lower()
     if fn.endswith("package.json") or (text.lstrip().startswith("{") and '"dependencies"' in text):
         return _parse_package_json(text)

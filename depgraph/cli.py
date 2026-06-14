@@ -12,7 +12,10 @@ from .core import AuditResult, audit_file, audit_text, list_advisories
 
 
 def _read_stdin() -> str:
-    return sys.stdin.read()
+    try:
+        return sys.stdin.read()
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"stdin contains non-text data: {exc}") from exc
 
 
 _GRADE_GLYPH = {"A": "A", "B": "B", "C": "C", "D": "D", "F": "F"}
@@ -173,8 +176,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                 result = results[0] if len(results) == 1 else _merge_results(results)
             else:
                 result = audit_text(_read_stdin(), filename="<stdin>")
-        except OSError as exc:
+        except (OSError, ValueError) as exc:
             print(f"error: {exc}", file=sys.stderr)
+            return 2
+        except Exception as exc:  # noqa: BLE001
+            print(f"error: unexpected failure — {exc}", file=sys.stderr)
             return 2
 
         if args.format == "json":
