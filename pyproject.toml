@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cognis-depgraph"
-version = "0.1.1"
+version = "2.1.0"
 description = "Dependency risk visualizer — Scorecard + OSV + typosquat + maintainer signals"
 authors = [{name = "Cognis Digital", email = "suite@cognis.digital"}]
 license = {text = "LicenseRef-COCL-1.0"}
@@ -36,6 +36,14 @@ depgraph = "depgraph.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["depgraph"]
+artifacts = [
+    "depgraph/cognis_vulndb.jsonl.gz",
+    "depgraph/data_feeds_2026.json",
+]
+
+[tool.hatch.build.targets.wheel.force-include]
+"depgraph/cognis_vulndb.jsonl.gz" = "depgraph/cognis_vulndb.jsonl.gz"
+"depgraph/data_feeds_2026.json" = "depgraph/data_feeds_2026.json"
 
 [tool.hatch.metadata]
 allow-direct-references = true

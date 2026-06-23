@@ -28,6 +28,15 @@ from .core import (
     typosquat_match,
     version_compare,
 )
+from .enrich import (
+    EnrichmentHit,
+    enrich_dependency,
+    enrich_result,
+    enrichment_findings,
+    lookup_cve,
+    lookup_package,
+)
+from .vulndb_local import VulnDB
 
 __all__ = [
     "TOOL_NAME",
@@ -46,4 +55,11 @@ __all__ = [
     "score_to_grade",
     "typosquat_match",
     "version_compare",
+    "EnrichmentHit",
+    "enrich_dependency",
+    "enrich_result",
+    "enrichment_findings",
+    "lookup_cve",
+    "lookup_package",
+    "VulnDB",
 ]

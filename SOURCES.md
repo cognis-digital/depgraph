@@ -1,5 +1,31 @@
 # Sources
 
+## Bundled vulnerability data (offline)
+
+`depgraph` ships a consolidated, real **OSV** corpus in
+`depgraph/cognis_vulndb.jsonl.gz` — ~262,000 advisories across PyPI, npm, Go, Maven,
+RubyGems, crates.io, and NuGet, each with id, CVE/GHSA aliases, ecosystem, summary,
+severity, and affected packages. Lookups (`depgraph vulndb`, `depgraph enrich`) run
+entirely offline against this bundle — no network, no key.
+
+The curated, version-range advisories used by `depgraph audit` mirror real, public
+CVEs/GHSAs (e.g. CVE-2023-32681 / requests, CVE-2021-33503 / urllib3,
+CVE-2022-22817 / pillow, CVE-2021-23337 / lodash).
+
+## Edge / air-gap refresh feeds (opt-in, keyless)
+
+`depgraph feeds` and `depgraph/datafeeds.py` catalog mostly-keyless intelligence
+feeds for refreshing the offline baseline on the edge:
+
+- **CISA KEV** — Known Exploited Vulnerabilities catalog
+- **FIRST EPSS** — exploit-probability scores
+- **OSV.dev** — open-source vulnerability database
+- **NIST NVD CVE 2.0** — full CVE corpus
+- **GitHub GHSA** — GitHub Security Advisories
+- **MITRE ATT&CK** / **NIST OSCAL 800-53** — control mapping
+
+Online refresh is strictly opt-in; audits never touch the network.
+
 <!-- cognis-2026-live-sources -->
 
 ## Live 2026 sources (auto-expanded)

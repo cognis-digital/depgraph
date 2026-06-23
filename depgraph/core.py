@@ -663,6 +663,15 @@ def audit_file(path: str) -> AuditResult:
     return audit_text(text, filename=path)
 
 
+def scan(target: str) -> dict:
+    """MCP/agent convenience wrapper: audit a manifest path and return a dict.
+
+    Accepts a path to a requirements.txt / package.json / Pipfile and returns
+    the full audit as a JSON-able dict (same shape as ``AuditResult.as_dict``).
+    """
+    return audit_file(target).as_dict()
+
+
 def list_advisories(ecosystem: str | None = None) -> list[dict]:
     """Return the bundled advisory database (optionally filtered)."""
     if ecosystem:
@@ -671,4 +680,4 @@ def list_advisories(ecosystem: str | None = None) -> list[dict]:
 
 
 TOOL_NAME = "depgraph"
-TOOL_VERSION = "2.0.0"
+TOOL_VERSION = "2.1.0"
