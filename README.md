@@ -28,6 +28,78 @@ against an [OSV](https://osv.dev)-style advisory database with real semantic
 version-range checks. It **never sends your manifest anywhere** — the entire
 262k-record vulnerability corpus ships inside the package.
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ depgraph-emit --version
+depgraph 2.1.0
+```
+
+```console
+$ depgraph-emit --help
+usage: depgraph [-h] [--version] {audit,advisories,enrich,vulndb,feeds} ...
+
+Offline dependency-risk scorer + OSV-style vulnerability matcher. Grades
+pip/npm/Pipfile manifests A-F. Defensive use only.
+
+positional arguments:
+  {audit,advisories,enrich,vulndb,feeds}
+    audit               Audit a dependency manifest and grade every package.
+    advisories          List the bundled OSV-style advisory database.
+    enrich              Audit a manifest AND cross-reference every package
+                        against the bundled 262k-record offline OSV database.
+    vulndb              Query the bundled offline OSV database directly (no
+                        network).
+    feeds               List the edge/air-gap intelligence-feed catalog (CISA
+                        KEV / EPSS / OSV / NVD / GHSA). Refresh is online-opt-
+                        in only.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+```console
+$ depgraph-emit feeds
+35 edge/air-gap feed(s) in the catalog
+------------------------------------------------------------
+  cisa-kev                     vuln           [json]  CISA Known Exploited Vulnerabilities
+  epss                         vuln           [json]  FIRST EPSS exploit-probability scores
+  osv                          vuln           [json]  OSV.dev vulnerability query
+  nvd-cve                      vuln           [json]  NIST NVD CVE API 2.0
+  attack-enterprise            threat-intel   [stix]  MITRE ATT&CK Enterprise (STIX 2.1)
+  feodo-c2                     threat-intel   [json]  abuse.ch Feodo Tracker C2 IP blocklist
+  threatfox                    threat-intel   [json]  abuse.ch ThreatFox recent IOCs
+  urlhaus                      threat-intel   [json]  abuse.ch URLhaus recent malware URLs
+  sslbl                        threat-intel   [csv]  abuse.ch SSL/JA3 blacklist
+  oscal-800-53-rev5-catalog    compliance     [oscal]  NIST SP 800-53 rev5 catalog (OSCAL)
+  attack-nist-mappings         compliance     [json]  ATT&CK <-> NIST 800-53 control mappings
+  disa-stig-library            compliance     [html]  DISA STIG downloads (index)
+  ofac-sdn                     osint          [csv]  US Treasury OFAC SDN list
+  gdelt                        osint          [text]  GDELT 2.0 global event stream
+  opensky-states               osint          [json]  OpenSky Network live aircraft states
+  aws-ip-ranges                cloud          [json]  AWS public IP ranges
+  gcp-ip-ranges                cloud          [json]  Google Cloud IP ranges
+  github-advisories            vuln           [json]  GitHub Security Advisory DB (GHSA)
+  circl-cve                    vuln           [json]  CIRCL CVE / vulnerability-lookup
+  kev-mirror                   vuln           [json]  CISA KEV (cisagov GitHub mirror)
+  osv-pypi-bulk                vuln           [zip]  OSV bulk export (PyPI all)
+  spamhaus-drop                threat-intel   [text]  Spamhaus DROP (don't-route-or-peer)
+  tor-exit-nodes               threat-intel   [text]  Tor Project exit-node bulk list
+  sslbl-ja3                    threat-intel   [csv]  abuse.ch SSLBL JA3 fingerprint blacklist
+  urlhaus-recent               threat-intel   [json]  abuse.ch URLhaus recent (full)
+  attack-mobile                threat-intel   [stix]  MITRE ATT&CK Mobile (STIX 2.1)
+  attack-ics                   threat-intel   [stix]  MITRE ATT&CK
+```
+
+> Blocks above are real `depgraph` output — reproduce them from a clone.
+
+<!-- cognis:example:end -->
+
 ## Contents
 
 [Why](#why) · [What it really does](#what) · [Quick start](#quick-start) · [Worked example](#example) · [OSV enrichment](#enrich) · [Querying the DB](#vulndb) · [Edge / air-gap](#edge) · [Output formats](#formats) · [Polyglot ports](#ports) · [Install](#install) · [Scope & safety](#scope) · [AI stack](#ai-stack) · [Related](#related)

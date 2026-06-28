@@ -1,0 +1,22 @@
+$ depgraph-emit --help
+
+usage: depgraph [-h] [--version] {audit,advisories,enrich,vulndb,feeds} ...
+
+Offline dependency-risk scorer + OSV-style vulnerability matcher. Grades
+pip/npm/Pipfile manifests A-F. Defensive use only.
+
+positional arguments:
+  {audit,advisories,enrich,vulndb,feeds}
+    audit               Audit a dependency manifest and grade every package.
+    advisories          List the bundled OSV-style advisory database.
+    enrich              Audit a manifest AND cross-reference every package
+                        against the bundled 262k-record offline OSV database.
+    vulndb              Query the bundled offline OSV database directly (no
+                        network).
+    feeds               List the edge/air-gap intelligence-feed catalog (CISA
+                        KEV / EPSS / OSV / NVD / GHSA). Refresh is online-opt-
+                        in only.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
